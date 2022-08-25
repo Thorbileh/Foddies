@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import {
   Text,
   TextInput,
@@ -7,8 +7,7 @@ import {
   View,
   Image,
   SafeAreaView
-} from 'react-native'
-import { authentication } from '../firebaseAuth/firebase'
+} from 'react-native';
 import { auth } from '../firebaseAuth/firebase'
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
