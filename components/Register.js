@@ -1,35 +1,38 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react'
 import {
-  KeyboardAvoidingView,
-  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
-  Button,
   Image,
   SafeAreaView
 } from 'react-native'
 import { authentication } from '../firebaseAuth/firebase'
 import { auth } from '../firebaseAuth/firebase'
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { ImageBackground } from 'react-native-web'
+
+
 
 const img = require('../assets/foodies.png')
 
 const Register = () => {
 
-/*   const navigate =useNavigation();
+  const navigate = useNavigation();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   const handleSignUp = () => {
-    createUserWithEmailAndPassword(auth,email, password).then(userCredentials => 
-        {
-            const user = userCredentials.user;
-            console.log('Registered with:', user.email);
-        })
-        .catch(error => alert(error.message))
-        navigate("Login")
-} */
+    createUserWithEmailAndPassword(auth, email, password).then(userCredentials => {
+      const user = userCredentials.user;
+      console.log('Registered with:', user.email);
+    })
+      .catch(error => alert(error.message))
+   /*  navigate.replace("Login") */
+  }
+  const navigateToLogin=()=>{
+     navigate.replace("Login");
+  }
 
 
   return (
@@ -78,7 +81,10 @@ const Register = () => {
             backgroundColor: '#FFFFFF',
             borderRadius: 10,
             marginTop: 5
-          }}></TextInput>
+          }}
+          onChangeText={text => setEmail(text)}
+        />
+
         <TextInput
           placeholder='Enter Your Address' style={{
             width: '95%',
@@ -94,7 +100,7 @@ const Register = () => {
             borderRadius: 10,
             marginTop: 5
 
-          }}></TextInput>
+          }} />
         <TextInput
           placeholder='Enter Your Password'
           style={{
@@ -110,22 +116,60 @@ const Register = () => {
             backgroundColor: '#FFFFFF',
             borderRadius: 10,
             marginTop: 5
-          }} />
+          }}
+          onChangeText={text => setPassword(text)} />
       </View>
 
-      <TouchableOpacity style={{ backgroundColor: 'rgba(192, 9, 9, 0.96)', justifyContent: 'center', alignItems: 'center', width: 200, height: 35, borderRadius: 20, marginTop: 10, marginLeft: "23%" }}>
-        <Text style={{ color: "white", fontWeight: "bold", fontFamily: "Inter", fontSize: 20 }}>REGISTER</Text>
+      <TouchableOpacity
+        style={{
+          backgroundColor: 'rgba(192, 9, 9, 0.96)',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: 200,
+          height: 35,
+          borderRadius: 20,
+          marginTop: 10,
+          marginLeft: "23%",
+        }}>
+        <Text
+          style={{
+            color: "white",
+            fontWeight: "bold",
+            fontFamily: "Inter",
+            fontSize: 20,
+          }}
+          onPress={handleSignUp}
+          >REGISTER</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={{ flexDirection: "row", justifyContent: 'center', marginTop: 10 }}>
-        <Text style={{ fontFamily: 'Inter', fontStyle: 'normal', fontWeight: 600, fontSize: 16, color: '#000000' }}>Already registered?</Text><Text style={{
-          color: "#4B0808", fontFamily: 'Inter',
-          fontStyle: 'normal', fontWeight: 600, fontSize: 16,
-          
-        }}/* onPress={handleSignUp} */>LOGIN</Text>
+      <TouchableOpacity
+      onPress={navigateToLogin}
+        style={{
+          flexDirection: "row",
+          justifyContent: 'center',
+          marginTop: 10
+        }}>
+        <Text
+          style={{
+            fontFamily: 'Inter',
+            fontStyle: 'normal',
+            fontWeight: 600,
+            fontSize: 16,
+            color: '#000000'
+          }}>Already registered?</Text>
+        <Text
+          style={{
+            color: "#4B0808",
+            fontFamily: 'Inter',
+            fontStyle: 'normal',
+            fontWeight: 600,
+            fontSize: 16,
+
+          }}
+          >LOGIN</Text>
       </TouchableOpacity >
-      <TouchableOpacity style={{alignItems:'center',justifyContent:'center'}}>
-        <Text style={{fontFamily: 'Inter',fontStyle: 'normal',fontWeight: 600,fontSize: 16,color:'black',alignItems:'center',justifyContent:'center'}}>Browse</Text>
+      <TouchableOpacity style={{ alignItems: 'center', justifyContent: 'center' }}>
+        <Text style={{ fontFamily: 'Inter', fontStyle: 'normal', fontWeight: 600, fontSize: 16, color: 'black', alignItems: 'center', justifyContent: 'center' }}>Browse</Text>
       </TouchableOpacity>
     </SafeAreaView>
 
